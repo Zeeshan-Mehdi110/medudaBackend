@@ -32,7 +32,12 @@ const DATABASE_URL =
   process.env.DATABASE_URL || "postgres://localhost/medusa-starter-default";
 
 const REDIS_URL = process.env.REDIS_URL || "redis://localhost:6379";
-
+const BACKEND_URL = process.env.BACKEND_URL || "localhost:9000"
+const ADMIN_URL = process.env.ADMIN_URL || "localhost:7000"
+const STORE_URL = process.env.STORE_URL || "localhost:8000"
+ 
+const GoogleClientId = process.env.GOOGLE_CLIENT_ID || ""
+const GoogleClientSecret = process.env.GOOGLE_CLIENT_SECRET || ""
 const plugins = [
   `medusa-fulfillment-manual`,
   `medusa-payment-manual`,
@@ -78,7 +83,7 @@ const plugins = [
         },
         store: {
           callbackUrl: `https://medudabackend-production.up.railway.app/store/auth/google/cb`,
-          failureRedirect: `${STORE_URL}/login`,
+          failureRedirect: `http://${STORE_URL}/login`,
           // The success redirect can be overriden from the client by adding a query param `?redirectTo=your_url` to the auth url
           // This query param will have the priority over this configuration
           successRedirect: `https://pixelsjourney.com/`
