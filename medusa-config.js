@@ -53,6 +53,46 @@ const plugins = [
     },
   },
   {
+    resolve: "medusa-plugin-auth",
+    /** @type {import('medusa-plugin-auth').AuthOptions} */
+    options: [
+      {
+        type: "google",
+        // strict: "all", // or "none" or "store" or "admin"
+        strict: "none",
+        identifier: "google",
+        clientID: GoogleClientId,
+        clientSecret: GoogleClientSecret,
+        admin: {
+          callbackUrl: `https://medudabackend-production.up.railway.app/admin/auth/google/cb`,
+          failureRedirect: `${ADMIN_URL}/login`,
+          // The success redirect can be overriden from the client by adding a query param `?redirectTo=your_url` to the auth url
+          // This query param will have the priority over this configuration
+          successRedirect: `https://pixelsjourney.com/`
+          // authPath: '/admin/auth/google',
+          // authCallbackPath: '/admin/auth/google/cb',
+          // expiresIn: 24 * 60 * 60 * 1000,
+          // verifyCallback: (container, req, accessToken, refreshToken, profile, strict) => {
+          //    // implement your custom verify callback here if you need it
+          // },
+        },
+        store: {
+          callbackUrl: `https://medudabackend-production.up.railway.app/store/auth/google/cb`,
+          failureRedirect: `${STORE_URL}/login`,
+          // The success redirect can be overriden from the client by adding a query param `?redirectTo=your_url` to the auth url
+          // This query param will have the priority over this configuration
+          successRedirect: `https://pixelsjourney.com/`
+          // authPath: '/store/auth/google',
+          // authCallbackPath: '/store/auth/google/cb',
+          // expiresIn: 24 * 60 * 60 * 1000,
+          // verifyCallback: (container, req, accessToken, refreshToken, profile, strict) => {
+          //    // implement your custom verify callback here if you need it
+          // },
+        }
+      }
+    ]
+    },
+  {
     resolve: `medusa-plugin-algolia`,
     options: {
       applicationId: process.env.ALGOLIA_APP_ID,
