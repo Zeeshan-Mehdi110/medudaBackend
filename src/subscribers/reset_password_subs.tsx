@@ -50,7 +50,7 @@ import {
         }),
       };
     
-      fetch('https://pixelsjourney/store/custom/email', sendOptions)
+      fetch('https://medudabackend-production.up.railway.app/store/custom/email', sendOptions)
         .then(response => response.json())
         .then(data => console.log('Email sent successfully:', data))
         .catch((error) => console.error('Error sending email:', error));
