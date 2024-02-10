@@ -80,7 +80,7 @@ const plugins = [
         clientID: GoogleClientId,
         clientSecret: GoogleClientSecret,
         admin: {
-          callbackUrl: `https://medudabackend-production.up.railway.app/admin/auth/google/cb`,
+          callbackUrl: `https://backend.pixelsjourney.com/admin/auth/google/cb`,
           failureRedirect: `${ADMIN_URL}/login`,
           // The success redirect can be overriden from the client by adding a query param `?redirectTo=your_url` to the auth url
           // This query param will have the priority over this configuration
@@ -93,7 +93,7 @@ const plugins = [
           // },
         },
         store: {
-          callbackUrl: `https://medudabackend-production.up.railway.app/store/auth/google/cb`,
+          callbackUrl: `https://backend.pixelsjourney.com//store/auth/google/cb`,
           failureRedirect: `http://${STORE_URL}/login`,
           // The success redirect can be overriden from the client by adding a query param `?redirectTo=your_url` to the auth url
           // This query param will have the priority over this configuration
