@@ -94,7 +94,7 @@ const plugins = [
         },
         store: {
           callbackUrl: `https://backend.pixelsjourney.com/store/auth/google/cb`,
-          failureRedirect: `http://${STORE_URL}/login`,
+          failureRedirect: `https://${STORE_URL}/login`,
           // The success redirect can be overriden from the client by adding a query param `?redirectTo=your_url` to the auth url
           // This query param will have the priority over this configuration
           successRedirect: `https://pixelsjourney.com/`
