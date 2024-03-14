@@ -145,7 +145,7 @@ const plugins = [
         // },
         products: {
 					indexSettings: {
-						searchableAttributes: ['title', 'description', 'material', 'tags'],
+						searchableAttributes: ['title', 'description', 'material', 'tags',"collection_title","collection_handle","handle"],
 						// attributesToRetrieve: ['id', 'title','description', 'handle', 'thumbnail', 'subtitle', 'tags'],
             attributesToRetrieve: [
                     "id",
