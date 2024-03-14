@@ -119,69 +119,76 @@ const plugins = [
       }
     ]
     },
-  {
-    resolve: `medusa-plugin-algolia`,
-    options: {
-      applicationId: process.env.ALGOLIA_APP_ID,
-      adminApiKey: process.env.ALGOLIA_ADMIN_API_KEY,
-      settings: {
-        // products: {
-        //   indexSettings: {
-        //     searchableAttributes: ["title", "description"],
-        //     attributesToRetrieve: [
-        //       "id",
-        //       "title",
-        //       "description",
-        //       "handle",
-        //       "thumbnail",
-        //       "variants",
-        //       "variant_sku",
-        //       "options",
-        //       "collection_title",
-        //       "collection_handle",
-        //       "images",
-        //     ],
-        //   },
-        // },
-        products: {
-					indexSettings: {
-						searchableAttributes: ['title', 'description', 'material', 'tags',"collection_title","collection_handle","handle"],
-						// attributesToRetrieve: ['id', 'title','description', 'handle', 'thumbnail', 'subtitle', 'tags'],
-            attributesToRetrieve: [
-                    "id",
-                    "title",
-                    "description",
-                    "handle",
-                    "thumbnail",
-                    "subtitle",
-                    "tags",
-                    "material", 
-                    "variants",
-                    "variant_sku",
-                    "options",
-                    "collection_title",
-                    "collection_handle",
-                    "images",
-                  ],
-					},
-					transformer: (item) => ({
-						objectID: item.id,
-						title: item.title,
-						handle: item.handle,
-						thumbnail: item.thumbnail,
-						subtitle: item.subtitle,
-						tags: item.tags,
-						description: item.description,
-						material: item.material,
-            metadata: item.metadata,
-            collection_title: item.collection.handle,
-            collection_handle: item.collection.title,
-            
-					}),
-				},
+    {
+      resolve: `medusa-plugin-algolia`,
+      options: {
+        applicationId: process.env.ALGOLIA_APP_ID,
+        adminApiKey: process.env.ALGOLIA_ADMIN_API_KEY,
+        settings: {
+          products: {
+            indexSettings: {
+              searchableAttributes: [
+                'title',
+                'description',
+                'material',
+                'tags',
+                "collection_title",
+                "collection_handle",
+                "handle",
+                "meta_titleHe",
+                "meta_titleRu",
+                "meta_titleEn",
+                "meta_descEn",
+                "meta_descHe",
+                "meta_descRu",
+                // Add meta keys you wish to make searchable. For example, 'meta_color', 'meta_size' etc.
+              ],
+              attributesToRetrieve: [
+                "id",
+                "title",
+                "description",
+                "handle",
+                "thumbnail",
+                "subtitle",
+                "tags",
+                "material", 
+                "variants",
+                "variant_sku",
+                "options",
+                "collection_title",
+                "collection_handle",
+                "images",
+                // Include the entire meta object if needed
+                "meta",
+              ],
+            },
+            transformer: (item) => {
+              // Assuming item.meta is your meta object containing key-value pairs
+              const metaAttributes = item.meta ? Object.keys(item.meta).reduce((acc, key) => {
+                // Construct new keys for each meta attribute to be searchable
+                acc[`meta_${key}`] = item.meta[key];
+                return acc;
+              }, {}) : {};
+    
+              return {
+                objectID: item.id,
+                title: item.title,
+                handle: item.handle,
+                thumbnail: item.thumbnail,
+                subtitle: item.subtitle,
+                tags: item.tags,
+                description: item.description,
+                material: item.material,
+                metadata: item.metadata,
+                collection_title: item.collection && item.collection.title, // Ensure existence before accessing
+                collection_handle: item.collection && item.collection.handle, // Ensure existence before accessing
+                ...metaAttributes, // Spread the transformed meta attributes into the object
+              };
+            },
+          },
+        },
       },
-    },
-  },
+    }
 
 ];
 
