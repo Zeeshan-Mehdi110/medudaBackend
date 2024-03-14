@@ -180,9 +180,9 @@ const plugins = [
                 collection_title: item.collection ? item.collection.title : "", // Adjusted to avoid potential undefined access
                 collection_handle: item.collection ? item.collection.handle : "", // Adjusted to avoid potential undefined access
                 // Directly assign localized titles and descriptions from metadata
-                meta_titleHe: item.metadata.titleHe,
-                meta_titleRu: item.metadata.titleRu,
-                meta_titleEn: item.metadata.titleEn,
+                meta_titleHe: item.metadata?.titleHe ??  null,
+                meta_titleRu: item.metadata?.titleRu  ?? null,
+                meta_titleEn: item.metadata?.titleEn ?? null,
                 // meta_descEn: item.metadata.description ? item.metadata.description.description_en : "",
                 // meta_descHe: item.metadata.description ? item.metadata.description.description_he : "",
                 // meta_descRu: item.metadata.description ? item.metadata.description.description_ru : "",
