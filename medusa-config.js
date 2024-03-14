@@ -135,13 +135,12 @@ const plugins = [
                 "collection_title",
                 "collection_handle",
                 "handle",
-                "meta_titleHe",
+                "meta_titleHe", // Adjusted based on actual usage
                 "meta_titleRu",
                 "meta_titleEn",
                 "meta_descEn",
                 "meta_descHe",
                 "meta_descRu",
-                // Add meta keys you wish to make searchable. For example, 'meta_color', 'meta_size' etc.
               ],
               attributesToRetrieve: [
                 "id",
@@ -151,25 +150,23 @@ const plugins = [
                 "thumbnail",
                 "subtitle",
                 "tags",
-                "material", 
+                "material",
                 "variants",
                 "variant_sku",
                 "options",
                 "collection_title",
                 "collection_handle",
                 "images",
-                // Include the entire meta object if needed
-                "meta",
+                "meta_titleHe", // Make sure these are included to be retrievable
+                "meta_titleRu",
+                "meta_titleEn",
+                "meta_descEn",
+                "meta_descHe",
+                "meta_descRu",
               ],
             },
             transformer: (item) => {
-              // Assuming item.meta is your meta object containing key-value pairs
-              const metaAttributes = item.meta ? Object.keys(item.meta).reduce((acc, key) => {
-                // Construct new keys for each meta attribute to be searchable
-                acc[`meta_${key}`] = item.meta[key];
-                return acc;
-              }, {}) : {};
-    
+              // Extract titles and descriptions directly from item.metadata
               return {
                 objectID: item.id,
                 title: item.title,
@@ -179,16 +176,23 @@ const plugins = [
                 tags: item.tags,
                 description: item.description,
                 material: item.material,
-                metadata: item.metadata,
-                collection_title: item.collection && item.collection.title, // Ensure existence before accessing
-                collection_handle: item.collection && item.collection.handle, // Ensure existence before accessing
-                ...metaAttributes, // Spread the transformed meta attributes into the object
+                metadata: item.metadata, // Keep the original metadata as well if needed
+                collection_title: item.collection ? item.collection.title : "", // Adjusted to avoid potential undefined access
+                collection_handle: item.collection ? item.collection.handle : "", // Adjusted to avoid potential undefined access
+                // Directly assign localized titles and descriptions from metadata
+                meta_titleHe: item.metadata.titleHe,
+                meta_titleRu: item.metadata.titleRu,
+                meta_titleEn: item.metadata.titleEn,
+                // meta_descEn: item.metadata.description ? item.metadata.description.description_en : "",
+                // meta_descHe: item.metadata.description ? item.metadata.description.description_he : "",
+                // meta_descRu: item.metadata.description ? item.metadata.description.description_ru : "",
               };
             },
           },
         },
       },
     }
+    
 
 ];
 
