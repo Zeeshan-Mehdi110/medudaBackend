@@ -174,8 +174,8 @@ const plugins = [
 						description: item.description,
 						material: item.material,
             metadata: item.metadata,
-            collection_title: item.collection_title,
-            collection_handle: item.collection_handle,
+            collection_title: item.collection.handle,
+            collection_handle: item.collection.title,
             
 					}),
 				},
