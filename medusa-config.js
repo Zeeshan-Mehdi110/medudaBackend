@@ -135,12 +135,12 @@ const plugins = [
                 "collection_title",
                 "collection_handle",
                 "handle",
-                "meta_titleHe", // Adjusted based on actual usage
-                "meta_titleRu",
-                "meta_titleEn",
-                "meta_descEn",
-                "meta_descHe",
-                "meta_descRu",
+                "meta_title_he", // Make sure these are included to be retrievable
+                "meta_title_ru",
+                "meta_title_en",
+                "meta_desc_en",
+                "meta_desc_he",
+                "meta_desc_ru",
               ],
               attributesToRetrieve: [
                 "id",
