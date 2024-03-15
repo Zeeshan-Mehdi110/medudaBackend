@@ -157,12 +157,12 @@ const plugins = [
                 "collection_title",
                 "collection_handle",
                 "images",
-                "meta_titleHe", // Make sure these are included to be retrievable
-                "meta_titleRu",
-                "meta_titleEn",
-                "meta_descEn",
-                "meta_descHe",
-                "meta_descRu",
+                "meta_title_he", // Make sure these are included to be retrievable
+                "meta_title_ru",
+                "meta_title_en",
+                "meta_desc_en",
+                "meta_desc_he",
+                "meta_desc_ru",
               ],
             },
             transformer: (item) => {
@@ -180,12 +180,12 @@ const plugins = [
                 collection_title: item.collection ? item.collection.title : "", // Adjusted to avoid potential undefined access
                 collection_handle: item.collection ? item.collection.handle : "", // Adjusted to avoid potential undefined access
                 // Directly assign localized titles and descriptions from metadata
-                meta_titleHe: item.metadata?.titleHe ??  null,
-                meta_titleRu: item.metadata?.titleRu  ?? null,
-                meta_titleEn: item.metadata?.titleEn ?? null,
-                // meta_descEn: item.metadata.description ? item.metadata.description.description_en : "",
-                // meta_descHe: item.metadata.description ? item.metadata.description.description_he : "",
-                // meta_descRu: item.metadata.description ? item.metadata.description.description_ru : "",
+                meta_title_he: item.metadata?.title_he ??  null,
+                meta_title_ru: item.metadata?.title_ru  ?? null,
+                meta_title_en: item.metadata?.title_en ?? null,
+                meta_desc_he: item.metadata?.desc_he ??  null,
+                meta_desc_ru: item.metadata?.desc_ru  ?? null,
+                meta_desc_en: item.metadata?.desc_en ?? null,
               };
             },
           },
