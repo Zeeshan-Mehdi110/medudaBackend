@@ -120,6 +120,16 @@ const plugins = [
     ]
     },
     {
+      resolve: `medusa-custom-attributes`,
+      options: {
+        enableUI: true,
+        projectConfig: {
+          store_cors: STORE_CORS,
+          admin_cors: ADMIN_CORS,
+        },
+      },
+    },
+    {
       resolve: `medusa-plugin-algolia`,
       options: {
         applicationId: process.env.ALGOLIA_APP_ID,
@@ -224,6 +234,9 @@ const projectConfig = {
 
 /** @type {import('@medusajs/medusa').ConfigModule} */
 module.exports = {
+  featureFlags: {
+    product_categories: true
+  },
   projectConfig,
   plugins,
   modules,
