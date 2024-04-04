@@ -235,7 +235,9 @@ const projectConfig = {
 /** @type {import('@medusajs/medusa').ConfigModule} */
 module.exports = {
   featureFlags: {
-    product_categories: true
+    product_categories: true,
+    category_id: true,
+    include_category_children: true,
   },
   projectConfig,
   plugins,
